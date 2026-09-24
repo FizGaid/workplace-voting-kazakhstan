@@ -3,324 +3,424 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Workplace Institutional Nature and Electoral Participation in Kazakhstan</title>
+  <title>Workplace Institutional Nature & Voting Habits</title>
   <style>
     :root {
-      --bg: #0f172a;
-      --card-bg: #1e293b;
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
-      --accent: #38bdf8;
-      --accent-glow: rgba(56, 189, 248, 0.15);
-      --border: #334155;
+      --bg: #1c1017;
+      --card-bg: #2b1824;
+      --accent: #ff79b0;
+      --accent-soft: #f43f85;
+      --accent-glow: rgba(255, 121, 176, 0.15);
+      --text-main: #fff0f6;
+      --text-muted: #d9aabf;
+      --border: #4d233d;
     }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       background: var(--bg);
       color: var(--text-main);
-      line-height: 1.6;
-      padding-bottom: 5rem;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
     }
-    header {
-      background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
-      padding: 4rem 2rem 3rem;
-      text-align: center;
-      border-bottom: 1px solid var(--border);
-    }
-    header h1 {
-      font-size: 2.3rem;
-      max-width: 900px;
-      margin: 0 auto 1rem;
-      color: #ffffff;
-      font-weight: 700;
-    }
-    header p.subtitle {
-      color: var(--accent);
-      font-size: 1.15rem;
-      font-weight: 500;
-    }
-    header .meta {
-      margin-top: 1rem;
-      font-size: 0.9rem;
-      color: var(--text-muted);
-    }
-    main {
-      max-width: 920px;
-      margin: 2.5rem auto 0;
-      padding: 0 1.5rem;
-    }
-    section {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 2.5rem;
-      margin-bottom: 2.5rem;
-      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
-    }
-    h2 {
-      font-size: 1.6rem;
-      color: var(--accent);
-      margin-bottom: 1.25rem;
-      border-bottom: 2px solid var(--border);
-      padding-bottom: 0.5rem;
+
+    /* Presentation Slide Container */
+    #slide-deck {
+      flex: 1;
+      position: relative;
+      width: 100%;
+      height: 100%;
       display: flex;
       align-items: center;
-      gap: 0.75rem;
+      justify-content: center;
+      padding: 1.5rem;
     }
-    h3 {
-      font-size: 1.2rem;
+
+    .slide {
+      display: none;
+      width: 100%;
+      max-width: 1000px;
+      height: 85vh;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 2.5rem 3rem;
+      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.45);
+      overflow-y: auto;
+      animation: fadeIn 0.25s ease-in-out;
+    }
+
+    .slide.active {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.99); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    /* Typography */
+    h1 {
+      font-size: 2.2rem;
       color: #ffffff;
-      margin: 1.25rem 0 0.5rem;
+      line-height: 1.3;
+      margin-bottom: 1rem;
     }
-    p { margin-bottom: 1rem; color: #e2e8f0; }
-    ul { margin: 1rem 0 1.5rem 1.5rem; color: #e2e8f0; }
-    li { margin-bottom: 0.5rem; }
+
+    h2 {
+      font-size: 1.7rem;
+      color: var(--accent);
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 0.5rem;
+      margin-bottom: 1.25rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    h3 {
+      font-size: 1.15rem;
+      color: var(--accent);
+      margin: 1rem 0 0.4rem;
+    }
+
+    p {
+      color: var(--text-main);
+      font-size: 1rem;
+      line-height: 1.55;
+      margin-bottom: 0.8rem;
+    }
+
+    ul, ol {
+      margin-left: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+      color: #fce7f1;
+      line-height: 1.5;
+    }
+
     .badge {
       background: var(--accent-glow);
       border: 1px solid var(--accent);
       color: var(--accent);
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      padding: 0.2rem 0.6rem;
-      border-radius: 4px;
-      font-weight: bold;
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
+      display: inline-block;
+      width: fit-content;
+      margin-bottom: 1rem;
     }
+
     .box {
-      background: #151f32;
+      background: #200f1a;
       border-left: 4px solid var(--accent);
-      padding: 1.25rem;
-      border-radius: 0 8px 8px 0;
-      margin: 1.25rem 0;
+      padding: 1rem 1.25rem;
+      border-radius: 0 10px 10px 0;
+      margin: 1rem 0;
+      border-top: 1px solid rgba(255, 121, 176, 0.1);
+      border-right: 1px solid rgba(255, 121, 176, 0.1);
+      border-bottom: 1px solid rgba(255, 121, 176, 0.1);
     }
+
     table {
       width: 100%;
       border-collapse: collapse;
-      margin: 1.5rem 0;
+      margin: 1rem 0;
       font-size: 0.95rem;
     }
+
     th, td {
       border: 1px solid var(--border);
-      padding: 0.85rem 1rem;
+      padding: 0.65rem 0.9rem;
       text-align: left;
     }
+
     th {
-      background: #111c2e;
+      background: #200f1a;
       color: var(--accent);
-      font-weight: 600;
     }
-    tr:nth-child(even) { background: rgba(255, 255, 255, 0.02); }
-    .talking-tip {
-      background: rgba(245, 158, 11, 0.08);
-      border: 1px dashed #f59e0b;
-      padding: 1rem 1.25rem;
+
+    tr:nth-child(even) {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    /* Bottom Slide Navigation Bar */
+    footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 2rem;
+      background: #150911;
+      border-top: 1px solid var(--border);
+    }
+
+    .nav-buttons {
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    button {
+      background: var(--accent-soft);
+      border: none;
+      color: #ffffff;
+      padding: 0.55rem 1.2rem;
       border-radius: 8px;
-      margin-top: 1.25rem;
+      font-weight: 600;
+      cursor: pointer;
       font-size: 0.9rem;
-      color: #fde68a;
+      transition: background 0.15s ease;
     }
-    .talking-tip strong { color: #f59e0b; }
+
+    button:hover {
+      background: var(--accent);
+      color: #1c1017;
+    }
+
+    button:disabled {
+      background: #3e2233;
+      color: #7a4a66;
+      cursor: not-allowed;
+    }
+
+    #slide-indicator {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .keyboard-hint {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
   </style>
 </head>
 <body>
 
-<header>
-  <span class="badge">PLS 210 Political Research Methods</span>
-  <h1>The Paycheck Mobilizer: How Workplace Sector Regulates Ballot Turnout in Urban Kazakhstan</h1>
-  <p class="subtitle">An Empirical Research Proposal Presented via Web Page</p>
-  <div class="meta">Format: 8–10 Minute Live Defense | Candidate Framework: Positivist Tradition</div>
-</header>
+  <div id="slide-deck">
 
-<main>
-
-  <!-- 1. RESEARCH QUESTION -->
-  <section id="question">
-    <h2>1. Research Question & Empirical Puzzle</h2>
-    <div class="box">
-      <strong>Central Empirical Research Question:</strong><br>
-      <em>To what extent does employment in state-controlled facilities (civil service and state-owned enterprises) compared to private sector firms influence the likelihood of individual voter turnout in national and local elections across post-2020 urban Kazakhstan?</em>
+    <!-- SLIDE 0: TITLE -->
+    <div class="slide active">
+      <span class="badge">PLS 210 Political Research Methods</span>
+      <h1 style="margin-top: 1.5rem; font-size: 2.4rem;">The Paycheck Mobilizer: How Workplace Nature Regulates Ballot Turnout</h1>
+      <p style="color: var(--accent); font-size: 1.2rem; font-weight: 500; margin-top: 0.5rem;">
+        An Empirical Research Proposal on Workplace Institutions and Voting Habits in Kazakhstan
+      </p>
+      <div class="box" style="margin-top: 2rem;">
+        <p><strong>Candidate Tradition:</strong> Positivist Empirical Inquiry</p>
+        <p><strong>Format:</strong> 8–10 Minute Oral Presentation</p>
+        <p><strong>Author:</strong> Research Proposal Candidate</p>
+      </div>
+      <p class="keyboard-hint" style="margin-top: auto;">Use the <strong>Next</strong> button or your keyboard's <strong>Arrow Keys</strong> (&larr; / &rarr;) to navigate slides.</p>
     </div>
 
-    <h3>The Empirical Puzzle: Why <em>X</em> Despite <em>Y</em>?</h3>
-    <ul>
-      <li><strong>Conventional Expectation (<em>Y</em>):</strong> Classic political sociology and modernization theories posit that autonomy, education, and integration into competitive corporate ecosystems drive civic agency, while economically constrained workers exhibit political alienation or low participation.</li>
-      <li><strong>Observed Reality (<em>X</em>):</strong> In Kazakhstan, employees of state-owned enterprises (e.g., Samruk-Kazyna subsidiaries) and state budgetary institutions exhibit significantly higher voter turnout than private small-to-medium enterprise (SME) workers, despite lacking traditional civic autonomy.</li>
-      <li><strong>Scope Conditions:</strong> Urban adult citizens of voting age residing in Astana, Almaty, and Shymkent, examining election participation from the 2021 Mazhilis elections to the present.</li>
-    </ul>
+    <!-- SLIDE 1: RESEARCH QUESTION & PUZZLE -->
+    <div class="slide">
+      <h2>1. Research Question & Empirical Puzzle</h2>
+      <div class="box">
+        <strong>Central Empirical Research Question:</strong><br>
+        <em>To what extent does employment in state-controlled facilities (civil service and state-owned enterprises) compared to private sector firms influence the likelihood of individual voter turnout in national and local elections across post-2020 urban Kazakhstan?</em>
+      </div>
 
-    <div class="talking-tip">
-      <strong>Oral Speaking Script (Slide 1 ~90 sec):</strong> "Good morning. My research addresses a key question in political behavior: To what extent does an employer's institutional nature—state versus private—predict whether a person votes? Following the puzzle framework of Gustafsson and Hagström, the puzzle is: Why do state enterprise employees turn out at systematically higher rates despite lacking the civic autonomy traditional theory says drives turnout? This question is strictly empirical, answerable, and scoped explicitly to urban Kazakhstan post-2020."
-    </div>
-  </section>
-
-  <!-- 2. EPISTEMOLOGICAL POSITIONING -->
-  <section id="positioning">
-    <h2>2. Epistemological Positioning</h2>
-    <p>This project adopts a <strong>Positivist (Post-Positivist) Empirical Tradition</strong>, anchored on the methodological principles defined in Powner (2015) and Farrow et al. (2020).</p>
-    
-    <table>
-      <thead>
-        <tr>
-          <th>Pillar</th>
-          <th>Stance</th>
-          <th>Application to this Study</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><strong>Ontology</strong></td>
-          <td>Objective Social Reality</td>
-          <td>Electoral turnout and employment status exist as measurable, observable phenomena outside the researcher’s subjective feelings.</td>
-        </tr>
-        <tr>
-          <td><strong>Epistemology</strong></td>
-          <td>Deductive Hypothesis Testing</td>
-          <td>Knowledge is produced through falsifiable hypotheses, systematic statistical inference, and variable isolation while controlling for confounders.</td>
-        </tr>
-        <tr>
-          <td><strong>Axiology</strong></td>
-          <td>Value-Detached Empirical Rigor</td>
-          <td>Separation between normative preferences (whether workplace mobilization is "good" or "bad") and empirical observation (whether the statistical correlation holds).</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <div class="talking-tip">
-      <strong>Oral Speaking Script (Slide 2 ~60 sec):</strong> "I position this proposal squarely within the positivist tradition. As Farrow et al. outline, positivism views social phenomena as composed of systematic, discoverable patterns. I assume that a worker's decision to cast a ballot is an observable outcome governed by identifiable social mechanisms. My goal is not to interpret the subjective meaning workers assign to elections, but to test whether workplace institutional type predicts voter turnout."
-    </div>
-  </section>
-
-  <!-- 3. CONTRIBUTION -->
-  <section id="contribution">
-    <h2>3. Contribution to the Discipline</h2>
-    <p>Following Daniel de Kadt and Anna Grzymala-Busse (2025) on <em>Good Description</em> and Jeffrey Knopf (2006) on literature mapping, this project delivers two primary contributions:</p>
-    <ul>
-      <li><strong>Preventing Conceptual Slippage:</strong> Most political behavior literature relegates "occupation" to a crude, one-dimensional socioeconomic status (SES) control variable. This study disaggregates employment into distinct institutional environments: Budgetary State (civil service, schools, hospitals), State-Owned Commercial Enterprises (SOEs), and Independent Private Sector Firms.</li>
-      <li><strong>Expanding Hybrid Regime Voting Models:</strong> Current turnout models predominantly reflect Western electoral contexts. By measuring the workplace as an explicit political transmission belt in Kazakhstan, the study clarifies whether electoral turnout in hybrid regimes reflects genuine civic duty or administrative-economic dependence.</li>
-    </ul>
-
-    <div class="talking-tip">
-      <strong>Oral Speaking Script (Slide 3 ~60 sec):</strong> "Why does this matter? As de Kadt and Grzymala-Busse argue, good social science must refine concepts before running causal models. Existing studies lump all jobs into crude income buckets. My study shows that *who issues your paycheck* functions as an institutional mechanism of political socialization, filling a known gap in post-Soviet electoral studies."
-    </div>
-  </section>
-
-  <!-- 4. LITERATURE REVIEW -->
-  <section id="lit-review">
-    <h2>4. Literature Review (Knopf Synthesis Model)</h2>
-    <p>Synthesizing prior scholarship reveals three main camps regarding workplace influences on electoral behavior:</p>
-
-    <h3>Camp A: The Resource Model & Autonomous Civic Skills</h3>
-    <p><strong>Wolfinger & Rosenstone (1980); Verba, Schlozman, & Brady (1995)</strong> argue that workplace environments influence turnout primarily by providing civic skills (organizing meetings, public speaking) and financial resources. This camp assumes that high-status private professional settings foster political participation by reducing cognitive and logistical information costs.</p>
-
-    <h3>Camp B: Economic Self-Interest & Public Choice</h3>
-    <p><strong>Blais et al. (1991); Garand et al. (1991)</strong> identify a systematic turnout gap between public and private workers in consolidated democracies. Their Public Choice framework shows public employees vote at higher rates because their livelihood, job security, and workplace budgets are directly determined by the elected officials running the state.</p>
-
-    <h3>Camp C: Workplace Surveillance & Coerced Mobilization in Hybrid Regimes</h3>
-    <p><strong>Frye, Reuter, & Szakonyi (2014); Gerber, Green, & Larimer (2008)</strong> demonstrate how organizational structures can enforce electoral participation through social and institutional pressure. Frye et al. document that in post-communist regimes, firms with close state ties or high asset immobility actively monitor and pressure workers to vote to demonstrate loyalty to political authorities.</p>
-
-    <div class="box">
-      <strong>Identified Scholarly Gap:</strong> While Western literature focuses on voluntary self-interest (Camp B) and Russian studies focus on explicit authoritarian coercion (Camp C), neither captures the nuanced reality of Kazakhstan’s modern corporate and SOE workforce, where turnout pressure operates through soft managerial incentives, corporate KPI culture, and administrative convenience.
+      <h3>The Empirical Puzzle: Why <em>X</em> Despite <em>Y</em>?</h3>
+      <ul>
+        <li><strong>Conventional Expectation (<em>Y</em>):</strong> Modernization and civic voluntarism models posit that civic autonomy, education, and private market integration drive active electoral engagement, whereas economically dependent workers exhibit lower civic autonomy.</li>
+        <li><strong>Observed Reality (<em>X</em>):</strong> In Kazakhstan, employees in public budgetary institutions and state-owned enterprises consistently vote at systematically higher rates than private small-to-medium enterprise (SME) employees.</li>
+        <li><strong>Target Scope:</strong> Urban adult citizens of voting age residing in Astana, Almaty, and Shymkent from the 2021 Mazhilis elections onward.</li>
+      </ul>
     </div>
 
-    <div class="talking-tip">
-      <strong>Oral Speaking Script (Slide 4 ~150 sec):</strong> "Structuring my literature using Knopf's framework, I group existing research into three camps. Camp A (Verba, Schlozman, and Brady) claims workplaces matter because they cultivate civic skills. Camp B (Blais, Garand) argues public workers vote out of rational economic self-interest to protect state budgets. Camp C (Frye, Reuter, and Szakonyi) proves that in post-Soviet regimes, the workplace serves as an instrument of turnout monitoring. My work bridges Camps B and C by testing whether Kazakhstan's SOEs operate via voluntary interest or institutional mobilization."
-    </div>
-  </section>
-
-  <!-- 5. THEORY AND HYPOTHESES -->
-  <section id="theory">
-    <h2>5. Theory & Hypotheses (Positivist Tradition)</h2>
-    <p>Adhering to Powner (2015, Ch. 2), a complete theory requires: prediction, causal mechanism, core assumptions, and operational hypotheses.</p>
-
-    <h3>Causal Mechanism Diagram</h3>
-    <div class="box" style="font-family: monospace; font-size: 1.05rem;">
-      [State / SOE Employment]<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&darr; (Institutional Dependence & Proximity to State Resources)<br>
-      [Managerial Norm Enforcement & Workplace GOTV Mobilization]<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&darr; (Lower Turnout Costs + Higher Perceived Cost of Non-Compliance)<br>
-      [+ Increased Individual Probability of Casting a Ballot]
-    </div>
-
-    <h3>Underlying Assumptions</h3>
-    <ul>
-      <li><strong>Rational Actor Assumption:</strong> Individuals consider the stability of their primary source of income when deciding how to allocate time and effort during elections.</li>
-      <li><strong>Information Asymmetry:</strong> State institutions and SOEs possess organized internal communications (trade unions, internal directives, HR briefings) that make election day details cheaper to access than in fragmented private businesses.</li>
-    </ul>
-
-    <h3>Formal Hypotheses</h3>
-    <div class="box">
-      <strong>Primary Hypothesis (H1):</strong> Controlling for education, income, and age, individuals employed in state-owned enterprises or public budgetary organizations are more likely to vote than individuals employed in the private sector.<br>
-      <code>+ Voter Turnout (DV) &larr; + State Employment Exposure (IV)</code><br><br>
-      <strong>Secondary Mechanism Hypothesis (H2):</strong> The positive effect of state employment on turnout is mediated by direct workplace communication (reminders from supervisors or organized transport on election day).
-    </div>
-
-    <table>
-      <thead>
-        <tr>
-          <th>Variable Role</th>
-          <th>Conceptual Name</th>
-          <th>Empirical Indicator</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><strong>Independent (IV)</strong></td>
-          <td>Employment Sector Nature</td>
-          <td>Categorical (1 = Budgetary State, 2 = State-Owned Enterprise, 3 = Private SME/Firm)</td>
-        </tr>
-        <tr>
-          <td><strong>Dependent (DV)</strong></td>
-          <td>Electoral Participation</td>
-          <td>Binary (1 = Voted in most recent national/local election, 0 = Did not vote)</td>
-        </tr>
-        <tr>
-          <td><strong>Key Controls (Z)</strong></td>
-          <td>Confounders</td>
-          <td>Age, Educational Attainment, Household Income, Years at Workplace</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <div class="talking-tip">
-      <strong>Oral Speaking Script (Slide 5 ~120 sec):</strong> "Following Powner's guidelines, my theory is explicit: State and SOE employment lowers the cost of voting through managerial coordination while raising the social and occupational cost of abstaining. Therefore, my primary hypothesis is: +Turnout &larr; +State Employment. As shown in the variable matrix, my IV is institutional employer type and my DV is binary ballot casting, controlling for education, income, and age."
-    </div>
-  </section>
-
-  <!-- 6. AI TRANSPARENCY STATEMENT -->
-  <section id="ai-transparency">
-    <h2>6. AI Transparency Statement</h2>
-    <div class="box">
-      <strong>Mandatory 30-Second Disclosure:</strong><br>
-      I collaborated with Gemini (Google AI) as a methodological thought partner and frontend technical assistant. Gemini assisted in:
-      <ol>
-        <li>Formulating the research puzzle using Gustafsson & Hagström's comparative heuristic.</li>
-        <li>Synthesizing and structuring the literature review across Knopf's three-camp model.</li>
-        <li>Translating theoretical logic into clean semantic HTML/CSS and configuring GitHub Pages deployment.</li>
-      </ol>
-      <em>All claims, conceptual operationalizations, and source evaluations were independently verified and critically assessed by the author using original course readings.</em>
+    <!-- SLIDE 2: EPISTEMOLOGICAL POSITIONING -->
+    <div class="slide">
+      <h2>2. Epistemological Positioning</h2>
+      <p>This proposal is framed within a <strong>Positivist (Post-Positivist) Empirical Tradition</strong> (Powner 2015; Farrow et al. 2020):</p>
+      
+      <table>
+        <thead>
+          <tr>
+            <th>Philosophical Dimension</th>
+            <th>Positivist Stance</th>
+            <th>Operationalization in this Study</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Ontology</strong></td>
+            <td>Objective Social Reality</td>
+            <td>Turnout rates and employment sectors exist as measurable, observable phenomena independent of subjective perception.</td>
+          </tr>
+          <tr>
+            <td><strong>Epistemology</strong></td>
+            <td>Deductive Hypothesis Testing</td>
+            <td>Generating testable hypotheses, isolating explanatory mechanisms, and using statistical controls against rival explanations.</td>
+          </tr>
+          <tr>
+            <td><strong>Axiology</strong></td>
+            <td>Value-Detached Empirical Stance</td>
+            <td>Separating empirical inquiry (identifying correlations) from normative evaluation (whether workplace mobilization is desirable).</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
-    <div class="talking-tip">
-      <strong>Oral Speaking Script (Slide 6 ~30 sec):</strong> "To maintain full academic transparency: I used AI as an interactive research assistant. The AI helped me structure the literature into thematic camps and generate the clean HTML code hosting this presentation. All academic logic, variable choices, and source selections were reviewed and defended by me personally."
+    <!-- SLIDE 3: CONTRIBUTION -->
+    <div class="slide">
+      <h2>3. Contribution to the Discipline</h2>
+      <p>Drawing on the criteria for empirical rigor and descriptive clarity (de Kadt & Grzymala-Busse 2025; Knopf 2006):</p>
+      <ul>
+        <li><strong>Preventing Conceptual Slippage:</strong> Most political behavior literature treats "employment" as a generic component of Socioeconomic Status (SES). This study disaggregates employment into distinct organizational environments: Budgetary State, State-Owned Enterprises (SOEs), and Independent Private Firms.</li>
+        <li><strong>Expanding Voter Mobilization Models in Hybrid Regimes:</strong> Standard models assume turnout is either driven by voluntary civic duty or blunt electoral coercion. This project clarifies how modern state corporate structures act as soft institutional transmission belts for participation.</li>
+      </ul>
     </div>
-  </section>
 
-  <!-- 7. UNGRADED SELF-REFLECTION -->
-  <section id="reflection">
-    <h2>7. Self-Reflection: AI Collaboration & Design Boundaries</h2>
-    <p><em>(Ungraded section displaying ongoing research refinement)</em></p>
-    <ul>
-      <li><strong>What working with AI helped me understand:</strong> It helped me see the difference between a simple political topic and a genuine social science question. The AI helped me structure the literature review around contrasting intellectual mechanisms rather than writing an author-by-author summary list, aligning directly with Jeffrey Knopf’s standards.</li>
-      <li><strong>What I still don't understand / Am actively refining:</strong> How to cleanly disentangle <em>self-selection bias</em> from true <em>workplace mobilization effects</em>. Do state-owned enterprises actively turn civic non-voters into voters, or do risk-averse, highly compliant citizens naturally choose to work for the state in the first place? In stage two, I will explore survey instruments to control for pre-existing civic values.</li>
-    </ul>
+    <!-- SLIDE 4: LITERATURE REVIEW -->
+    <div class="slide">
+      <h2>4. Literature Review (Knopf Synthesis Model)</h2>
+      <p>Organized into three competing schools of thought on workplace voting effects:</p>
 
-    <div class="talking-tip">
-      <strong>Oral Speaking Script (Slide 7 ~30 sec):</strong> "To conclude with my self-reflection: AI helped me clarify my causal mechanism, but it highlighted a key methodological challenge I am still refining: self-selection bias versus institutional mobilization. I look forward to your questions."
+      <h3>Camp A: Resource Model & Autonomous Civic Skills</h3>
+      <p><strong>Wolfinger & Rosenstone (1980); Verba, Schlozman, & Brady (1995):</strong> Workplaces cultivate civic skills (organizing, communication) that lower the cognitive and logistical costs of voting.</p>
+
+      <h3>Camp B: Public Choice & Rational Economic Self-Interest</h3>
+      <p><strong>Blais et al. (1991); Garand et al. (1991):</strong> Public-sector workers participate at higher rates because their job security, salaries, and operating budgets directly rely on the political regime.</p>
+
+      <h3>Camp C: Workplace Surveillance & Institutional Pressure</h3>
+      <p><strong>Frye, Reuter, & Szakonyi (2014); Gerber, Green, & Larimer (2008):</strong> In non-consolidated democracies, dependent workplaces serve as mechanisms for voter monitoring and mobilization to demonstrate regime loyalty.</p>
+
+      <div class="box">
+        <strong>The Scholarly Gap:</strong> Prior research polarizes between Western voluntary self-interest (Camp B) and blunt post-Soviet coercion (Camp C), overlooking modern hybrid systems where corporate KPI culture and administrative mobilization operate simultaneously.
+      </div>
     </div>
-  </section>
 
-</main>
+    <!-- SLIDE 5: THEORY AND HYPOTHESES -->
+    <div class="slide">
+      <h2>5. Theory & Hypotheses</h2>
+      
+      <div class="box" style="font-family: monospace; font-size: 0.95rem;">
+        [State / SOE Employment Type]<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&darr; (Institutional Dependence & Managerial Proximity)<br>
+        [Workplace GOTV Directives & Internal Social Pressure]<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&darr; (Lower Participation Costs + Perceived Non-Compliance Risks)<br>
+        [+ Higher Probability of Casting a Ballot]
+      </div>
 
+      <div class="box">
+        <strong>Primary Hypothesis (H1):</strong> Controlling for education, income, and age, individuals employed in public budgetary organizations or state-owned enterprises are significantly more likely to vote than private sector employees.<br>
+        <code>+ Voter Turnout (DV) &larr; + State/SOE Employment (IV)</code>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Role</th>
+            <th>Variable</th>
+            <th>Operational Measurement</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>IV</strong></td>
+            <td>Employer Sector Nature</td>
+            <td>Categorical (1 = Budgetary State, 2 = State-Owned Enterprise, 3 = Private SME)</td>
+          </tr>
+          <tr>
+            <td><strong>DV</strong></td>
+            <td>Electoral Participation</td>
+            <td>Binary (1 = Voted in most recent national/local election, 0 = Did not vote)</td>
+          </tr>
+          <tr>
+            <td><strong>Controls</strong></td>
+            <td>Confounders</td>
+            <td>Age, Educational Attainment, Monthly Household Income, Tenure at Firm</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SLIDE 6: AI TRANSPARENCY STATEMENT -->
+    <div class="slide">
+      <h2>6. AI Transparency Statement</h2>
+      <div class="box">
+        <p><strong>Collaborative Workflow Disclosure:</strong></p>
+        <p>I collaborated with Gemini (Google AI) as a research design assistant and technical builder. AI was applied to:</p>
+        <ol>
+          <li>Structure the empirical puzzle using Gustafsson & Hagström's comparative heuristic.</li>
+          <li>Synthesize scholarship across Jeffrey Knopf’s three-camp literature review matrix.</li>
+          <li>Format theoretical relationships into an interactive slide web structure via HTML and CSS.</li>
+        </ol>
+        <p style="margin-top: 0.6rem;"><em>All source evaluations, variable definitions, and research logic were vetted and defended directly by the author.</em></p>
+      </div>
+    </div>
+
+    <!-- SLIDE 7: SELF-REFLECTION -->
+    <div class="slide">
+      <h2>7. Self-Reflection: Research Design Progress</h2>
+      <ul>
+        <li>
+          <strong>What Working with AI Helped Clarify:</strong><br>
+          It highlighted the necessity of disaggregating generic "socioeconomic status" into concrete organizational settings, shifting the literature review away from an author-by-author list into competing causal camps.
+        </li>
+        <li style="margin-top: 1rem;">
+          <strong>What Remains Methodologically Challenging:</strong><br>
+          Disentangling <em>institutional mobilization</em> from <em>selection bias</em>. Do state workplaces actively turn non-voters into voters, or do citizens with high baseline compliance and risk aversion choose state jobs initially? Addressing this will require pre-employment political attitude controls in Phase II survey designs.
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- CONTROLS FOOTER -->
+  <footer>
+    <div class="keyboard-hint">&larr; / &rarr; Arrow Keys navigate</div>
+    <div id="slide-indicator">Slide 1 of 8</div>
+    <div class="nav-buttons">
+      <button id="prevBtn" onclick="changeSlide(-1)">Previous</button>
+      <button id="nextBtn" onclick="changeSlide(1)">Next</button>
+    </div>
+  </footer>
+
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    const indicator = document.getElementById('slide-indicator');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    let currentIndex = 0;
+
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === index);
+      });
+      indicator.textContent = `Slide ${index + 1} of ${slides.length}`;
+      prevBtn.disabled = index === 0;
+      nextBtn.disabled = index === slides.length - 1;
+    }
+
+    function changeSlide(direction) {
+      const nextIndex = currentIndex + direction;
+      if (nextIndex >= 0 && nextIndex < slides.length) {
+        currentIndex = nextIndex;
+        showSlide(currentIndex);
+      }
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ') {
+        changeSlide(1);
+      } else if (e.key === 'ArrowLeft') {
+        changeSlide(-1);
+      }
+    });
+
+    showSlide(0);
+  </script>
 </body>
 </html>
